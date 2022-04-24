@@ -1,28 +1,57 @@
 <template>
-  <ul class="list">
-    <li v-for="post in posts" :key="post.id">
+  <section>
+    <ul class="list">
+    <li v-for="(post, index) in posts" 
+      :key="post.id"
+      v-show="(pag - 1) * items <= index  && pag * items > index">
       <section class="section">
         <PostImage :id="post.id"></PostImage>
         <article class="article">
           <h2 class="title">{{ post.title }}</h2>
           <p class="text">{{ post.body }}</p>
-          <a href="" class="link">Ver detalle</a>
+          <router-link 
+            class="link"
+            :to="`/detail/${post.id}`">Ver detalle</router-link>
         </article>
       </section>
     </li>
   </ul>
+  <Pagination 
+    :items="items" 
+    :pag="pag" 
+    :length="posts.length"
+    @previous="previousPag"
+    @next="nextPag">
+  </Pagination>
+  </section>
 </template>
 
 <script>
 import PostImage from './PostImage.vue';
+import Pagination from './Pagination.vue';
 
 export default {
   name: 'PostsCollection',
   components: {
-    PostImage
+    PostImage,
+    Pagination
   },
   props: {
-    posts: []
+    posts: [],
+  },
+  data() {
+    return {
+      items: 20, // Numero de resultados por página
+      pag: 1, // Página inicial
+    }
+  },
+  methods: {
+    previousPag() {
+      this.pag -= 1;
+    },
+    nextPag() {
+      this.pag += 1;
+    }
   }
 }
 </script>
@@ -77,5 +106,25 @@ li {
 .text {
   align-self: flex-start;
   margin-bottom: auto;
+}
+@media (max-width: 600px) {
+  .section {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    padding-right: 0;
+    margin: 20px auto;
+  }
+  .article {
+    margin: 0 auto;
+    padding: 24px;
+  }
+  .title {
+    margin-top: 0;
+  }
+  .link {
+    padding: 0;
+    padding-top: 1rem;
+  }
 }
 </style>

@@ -20,7 +20,6 @@ export default {
         async getDefaultData() {
             const { data } = await getPosts();
             this.posts = data;
-            console.log('this.posts', this.posts);
         }
     },
     mounted() {
@@ -28,3 +27,7 @@ export default {
     }
 }
 </script>
+
+<style scoped lang="scss">
+
+</style>
