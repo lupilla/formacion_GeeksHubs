@@ -20,6 +20,15 @@ const routes = [
     component: () => import(/* webpackChunkName: "ContactPage" */ '@/modules/author/pages/AuthorPage')
   },
   { 
+    path: '/detail/:id', 
+    name: 'detail',
+    component: () => import(/* webpackChunkName: 'NoPageFoundPage'*/ '@/modules/detail/pages/PostDetailPage'),
+    props: ( route ) => {
+      const id = Number( route.params.id );
+      return isNaN( id ) ? { id: 1 } : { id }
+    }
+  },
+  { 
     path: '/:pathMatch(.*)*', 
     name: 'notFound',
     component: () => import(/* webpackChunkName: 'NoPageFoundPage'*/ '@/modules/shared/pages/NoPageFound.vue')

@@ -1,7 +1,7 @@
 <template>
     <section>
         <h3 class="description">Ups, no encontramos la página...</h3>
-        <img src="@/assets/not-found.png" alt="not found" class="image"/>
+        <img src="@/assets/not-found.png" alt="not found" class="image">
     </section>
 </template>
 <style scoped lang="scss">

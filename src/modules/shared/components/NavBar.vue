@@ -32,12 +32,26 @@ nav {
     padding: 30px;
     a {
         text-decoration: none;
-        padding: 2em;
+        padding: 2rem;
         font-weight: bold;
         color: #fff;
 
         &.router-link-exact-active {
         color: #ffdf40;
+        }
+    }
+}
+@media (min-width: 321px) and (max-width: 600px) {
+    nav {
+        a {
+            padding: 1rem;
+        }
+    }
+}
+@media (max-width: 320px) {
+    nav {
+        a {
+            padding: .5rem;
         }
     }
 }
